@@ -3,39 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unpropable - Privacy Policy</title>
+    <title>BadGameDeveloper</title>
+    <meta name="description" content="A solo Junior Game Dev on the road to becoming a Good Game Developer.">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #1a1a2e; color: #e0e0e0; line-height: 1.6; }
-        h1 { color: #b388ff; }
-        h2 { color: #9575cd; margin-top: 30px; }
-        a { color: #b388ff; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #000;
+            color: #e8e8e8;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Stars */
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 3s) var(--delay, 0s) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: var(--base-opacity, 0.2); }
+            50% { opacity: var(--peak-opacity, 0.8); }
+        }
+
+        /* Scanline */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.03);
+            z-index: 0;
+            pointer-events: none;
+            animation: scan 8s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: -2px; }
+            100% { top: 100vh; }
+        }
+
+        code, .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .logo span { color: #555; }
+
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 400;
+            transition: color 0.3s;
+            letter-spacing: 0.02em;
+        }
+        .nav-links a:hover { color: #fff; }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+        }
+
+        .hero-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #444;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+        .hero-label .blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 24px;
+            letter-spacing: -0.04em;
+            color: #fff;
+        }
+
+        .hero h1 .dim { color: #333; }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 480px;
+            margin-bottom: 48px;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            font-family: 'JetBrains Mono', monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background: transparent;
+            color: #888;
+            border: 1px solid #222;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .hero-cta:hover {
+            color: #fff;
+            border-color: #444;
+        }
+
+        .scroll-line {
+            position: absolute;
+            bottom: 60px;
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, #333);
+            animation: scrollPulse 2s infinite;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #333;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            color: #fff;
+        }
+
+        .section-desc {
+            color: #555;
+            max-width: 500px;
+            margin-bottom: 56px;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+
+        /* Project */
+        .project {
+            border: 1px solid #111;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.4s;
+        }
+        .project:hover { border-color: #222; }
+
+        .project-header {
+            padding: 48px 40px;
+            background: linear-gradient(135deg, #050505, #0a0a0a);
+            border-bottom: 1px solid #111;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '{ }';
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6rem;
+            color: #0a0a0a;
+            font-weight: 700;
+        }
+
+        .project-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.03em;
+            position: relative;
+        }
+
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: #555;
+        }
+        .project-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #fff;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        .project-body { padding: 40px; }
+
+        .project-body p {
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 32px;
+            line-height: 1.8;
+            font-size: 0.92rem;
+        }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 5px 14px;
+            border: 1px solid #181818;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            color: #555;
+            background: #050505;
+        }
+
+        /* About Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #111;
+            border: 1px solid #111;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .about-cell {
+            padding: 36px;
+            background: #000;
+            transition: background 0.3s;
+        }
+        .about-cell:hover { background: #050505; }
+
+        .about-icon {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #333;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .about-cell h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ccc;
+        }
+
+        .about-cell p {
+            color: #555;
+            font-size: 0.85rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Divider */
+        .divider {
+            max-width: 900px;
+            margin: 0 auto;
+            height: 1px;
+            background: #111;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 60px 24px;
+        }
+
+        .footer-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        footer p {
+            color: #222;
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 12px;
+        }
+
+        .footer-links a {
+            font-family: 'JetBrains Mono', monospace;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.75rem;
+        }
+        .footer-links a:hover { color: #888; }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .nav-links { gap: 18px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .project-header { padding: 32px 24px; }
+            .project-body { padding: 24px; }
+        }
     </style>
 </head>
 <body>
-    <h1>Unpropable — Privacy Policy</h1>
-    <p><em>Last updated: February 26, 2026</em></p>
+    <div class="stars" id="stars"></div>
+    <div class="scanline"></div>
 
-    <h2>1. Information We Collect</h2>
-    <p>Unpropable uses Epic Online Services (EOS) for multiplayer functionality. When you play, the following information is processed:</p>
-    <ul>
-        <li>Your Epic Games display name</li>
-        <li>Your Epic Account ID (for session management)</li>
-        <li>Gameplay session data (lobbies, matchmaking)</li>
-    </ul>
+    <nav>
+        <a href="index.html" class="logo">bgd<span>/</span>~</a>
+        <ul class="nav-links">
+            <li><a href="#projects">projects</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="privacy.html">privacy</a></li>
+        </ul>
+    </nav>
 
-    <h2>2. How We Use Your Information</h2>
-    <p>We use this information solely to provide multiplayer game functionality, including hosting lobbies, matchmaking, and the social overlay (friend invites).</p>
+    <div class="hero">
+        <div class="hero-label">// solo indie dev <span class="blink">_</span></div>
+        <h1>Bad<span class="dim">Game</span><br>Developer</h1>
+        <p class="hero-sub">A solo Junior Game Dev on the road to becoming a Good Game Developer — hopefully.</p>
+        <a href="#projects" class="hero-cta">ls ./projects →</a>
+        <div class="scroll-line"></div>
+    </div>
 
-    <h2>3. Data Sharing</h2>
-    <p>We do not sell or share your personal information with third parties. Game session data is processed through Epic Online Services infrastructure.</p>
+    <div class="divider"></div>
 
-    <h2>4. Data Retention</h2>
-    <p>We do not store personal data on our servers. All account data is managed by Epic Games through their EOS platform.</p>
+    <section id="projects">
+        <div class="section-num">01 — PROJECTS</div>
+        <h2 class="section-title">What I'm Building</h2>
+        <p class="section-desc">Games built with passion, sleepless nights, and way too many compile errors.</p>
 
-    <h2>5. Your Rights</h2>
-    <p>You may manage your Epic Games account and data through your <a href="https://www.epicgames.com/account/personal">Epic Games account settings</a>.</p>
+        <div class="project">
+            <div class="project-header">
+                <div class="project-name">Unpropable</div>
+                <div class="project-status">ACTIVE DEVELOPMENT</div>
+            </div>
+            <div class="project-body">
+                <p>A multiplayer prop hunt game built in Unreal Engine 5. Hide as everyday objects, seek out your friends, and experience chaos in beautifully crafted maps. Features online multiplayer via Epic Online Services, custom matchmaking, and cross-platform sessions.</p>
+                <div class="tags">
+                    <span class="tag">unreal-engine-5.3</span>
+                    <span class="tag">c++</span>
+                    <span class="tag">multiplayer</span>
+                    <span class="tag">eos-sdk</span>
+                    <span class="tag">epic-games-store</span>
+                    <span class="tag">ps4</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>6. Contact</h2>
-    <p>For privacy-related questions, please reach out via our GitHub repository.</p>
+    <div class="divider"></div>
+
+    <section id="about">
+        <div class="section-num">02 — ABOUT</div>
+        <h2 class="section-title">The Developer</h2>
+        <p class="section-desc">One person. Many bugs. Infinite determination.</p>
+
+        <div class="about-grid">
+            <div class="about-cell">
+                <div class="about-icon">// mission</div>
+                <h3>The Goal</h3>
+                <p>To go from "bad" to "good" — one shipped game at a time. Every bug fixed is a step closer.</p>
+            </div>
+            <div class="about-cell">
+                <div class="about-icon">// stack</div>
+                <h3>Tech Stack</h3>
+                <p>Unreal Engine 5, C++, Blueprints, Node.js backends, and an unhealthy bond with Visual Studio.</p>
+            </div>
+            <div class="about-cell">
+                <div class="about-icon">// platforms</div>
+                <h3>Shipping To</h3>
+                <p>PC via Epic Games Store. PS4. With ambitions for more console releases down the line.</p>
+            </div>
+            <div class="about-cell">
+                <div class="about-icon">// philosophy</div>
+                <h3>How I Work</h3>
+                <p>Ship fast, break things, fix them before anyone notices. Player feedback is everything.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">badgamedeveloper</div>
+        <p>© 2026</p>
+        <div class="footer-links">
+            <a href="privacy.html">privacy</a>
+            <a href="https://github.com/ducky-ux1" target="_blank">github</a>
+        </div>
+    </footer>
+
+    <script>
+        // Generate stars
+        const container = document.getElementById('stars');
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (2 + Math.random() * 5) + 's');
+            star.style.setProperty('--delay', (Math.random() * 4) + 's');
+            star.style.setProperty('--base-opacity', (0.05 + Math.random() * 0.2));
+            star.style.setProperty('--peak-opacity', (0.3 + Math.random() * 0.7));
+            if (Math.random() > 0.85) {
+                star.style.width = '2px';
+                star.style.height = '2px';
+            }
+            container.appendChild(star);
+        }
+    </script>
 </body>
 </html>
